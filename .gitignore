@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Generated research artifacts. Keep directory placeholders only.
+results/*
+!results/checkpoints/
+!results/figures/
+!results/logs/
+!results/metrics/
+!results/rpeaks/
+results/checkpoints/*
+results/figures/*
+results/logs/*
+results/metrics/*
+results/rpeaks/*
+!results/**/.gitkeep
