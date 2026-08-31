@@ -1,0 +1,43 @@
+base_config: configs/cycloscg.yaml
+variants:
+  A2_cycle_aligned:
+    model:
+      use_cross_cycle_attention: false
+      use_consensus: false
+    loss_weights: {wave: 1.0, cycle: 0.0, cov: 0.0, svd: 0.0, spec: 0.0, cyclic: 0.0, identity: 0.0}
+  A3_attention:
+    model:
+      use_cross_cycle_attention: true
+      use_consensus: false
+    loss_weights: {wave: 1.0, cycle: 0.0, cov: 0.0, svd: 0.0, spec: 0.0, cyclic: 0.0, identity: 0.0}
+  A4_consensus:
+    model:
+      use_cross_cycle_attention: true
+      use_consensus: true
+    loss_weights: {wave: 1.0, cycle: 0.0, cov: 0.0, svd: 0.0, spec: 0.0, cyclic: 0.0, identity: 0.0}
+  A5_cycle_loss:
+    model:
+      use_cross_cycle_attention: true
+      use_consensus: true
+    loss_weights: {wave: 1.0, cycle: 0.2, cov: 0.0, svd: 0.0, spec: 0.0, cyclic: 0.0, identity: 0.0}
+  A6_covariance_loss:
+    model:
+      use_cross_cycle_attention: true
+      use_consensus: true
+    loss_weights: {wave: 1.0, cycle: 0.2, cov: 0.1, svd: 0.0, spec: 0.0, cyclic: 0.0, identity: 0.0}
+  A7_singular_loss:
+    model:
+      use_cross_cycle_attention: true
+      use_consensus: true
+    loss_weights: {wave: 1.0, cycle: 0.2, cov: 0.1, svd: 0.1, spec: 0.0, cyclic: 0.0, identity: 0.0}
+  Full:
+    model:
+      use_cross_cycle_attention: true
+      use_consensus: true
+    loss_weights: {wave: 1.0, cycle: 0.2, cov: 0.1, svd: 0.1, spec: 0.05, cyclic: 0.0, identity: 0.2}
+
+notes:
+  A0: Raw noisy input; no trainable model.
+  A1: Conventional direct-waveform Residual U-Net from configs/baseline.yaml.
+  comparison_rule: Use the same participant split, seed, sample budget, and benchmark mixtures for every variant.
+

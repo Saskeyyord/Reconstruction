@@ -1,0 +1,56 @@
+{
+  "seed": 20260830,
+  "train_clean_subjects": [
+    "SCG_P001",
+    "SCG_P002",
+    "SCG_P004",
+    "SCG_P005",
+    "SCG_P006",
+    "SCG_P007",
+    "SCG_P008",
+    "SCG_P011",
+    "SCG_P012",
+    "SCG_P013",
+    "SCG_P014",
+    "SCG_P016",
+    "SCG_P017",
+    "SCG_P018",
+    "SCG_P019",
+    "SCG_P022",
+    "SCG_P024",
+    "SCG_P026",
+    "SCG_P027",
+    "SCG_P028",
+    "SCG_P029",
+    "SCG_P031",
+    "SCG_P032",
+    "SCG_P034",
+    "SCG_P035"
+  ],
+  "val_clean_subjects": [
+    "SCG_P003",
+    "SCG_P020",
+    "SCG_P021",
+    "SCG_P023",
+    "SCG_P033"
+  ],
+  "test_clean_subjects": [
+    "SCG_P009",
+    "SCG_P010",
+    "SCG_P015",
+    "SCG_P025",
+    "SCG_P030"
+  ],
+  "train_noise_subjects": [
+    "NOISE_P002",
+    "NOISE_P003",
+    "NOISE_P004",
+    "NOISE_P006"
+  ],
+  "val_noise_subjects": [
+    "NOISE_P001"
+  ],
+  "test_noise_subjects": [
+    "NOISE_P005"
+  ]
+}

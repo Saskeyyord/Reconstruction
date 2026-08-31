@@ -1,0 +1,64 @@
+project:
+  seed: 20260830
+  output_root: results/cycloscg_gpu_v2
+
+data:
+  database_root: "H:/\u6570\u636e\u5e93"
+  split_manifest: configs/splits.json
+  sampling_rate_hz: 256
+  beats_per_window: 12
+  phase_length: 256
+  train_samples_per_epoch: 1024
+  val_samples_per_epoch: 256
+  signal_columns:
+    - scg_z_bandpass_8_32Hz_m_s2
+    - accel_z_centered_m_s2
+    - accel_z_m_s2
+  ecg_columns:
+    - ecg_LA_RA_centered_mV
+    - ecg_LA_RA_mV
+  # Low-SNR-focused fine-tuning; fixed benchmarks remain unchanged.
+  snr_db_min: -18.0
+  snr_db_max: 2.0
+  benchmark_snr_db: [-15.0, -10.0, -5.0, 0.0]
+  random_polarity: true
+  identity_probability: 0.15
+  normalize_by_clean_rms: true
+  strict_rpeak_qc: true
+
+model:
+  base_channels: 16
+  attention_heads: 4
+  dropout: 0.10
+  use_cross_cycle_attention: true
+  use_consensus: true
+  residual_reconstruction: true
+
+loss:
+  weights:
+    wave: 1.0
+    cycle: 0.22
+    cov: 0.18
+    svd: 0.10
+    spec: 0.02
+    cyclic: 0.00
+    identity: 0.30
+  stft_resolutions:
+    - [64, 16, 64]
+    - [128, 32, 128]
+    - [256, 64, 256]
+  use_cyclic_loss: false
+  cyclic_lags: [1, 2, 4, 8, 16, 32]
+
+training:
+  device: cuda
+  epochs: 24
+  batch_size: 32
+  num_workers: 0
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  patience: 8
+  min_delta: 0.0001
+  gradient_clip_norm: 5.0
+  mixed_precision: true
+  resume: null

@@ -1,0 +1,44 @@
+project:
+  seed: 20260830
+  output_root: results/baseline_gpu
+
+data:
+  database_root: "H:/\u6570\u636e\u5e93"
+  split_manifest: configs/splits.json
+  sampling_rate_hz: 256
+  waveform_samples: 2048
+  train_samples_per_epoch: 1024
+  val_samples_per_epoch: 256
+  test_samples_per_snr: 128
+  signal_columns:
+    - scg_z_bandpass_8_32Hz_m_s2
+    - accel_z_centered_m_s2
+    - accel_z_m_s2
+  ecg_columns:
+    - ecg_LA_RA_centered_mV
+    - ecg_LA_RA_mV
+  snr_db_min: -15.0
+  snr_db_max: 5.0
+  benchmark_snr_db: [-15.0, -10.0, -5.0, 0.0]
+  random_polarity: true
+  identity_probability: 0.15
+  normalize_by_clean_rms: true
+
+model:
+  base_channels: 16
+  depth: 3
+  dropout: 0.05
+  residual_reconstruction: true
+
+training:
+  device: cuda
+  epochs: 80
+  batch_size: 32
+  num_workers: 0
+  learning_rate: 0.0003
+  weight_decay: 0.00001
+  patience: 12
+  min_delta: 0.0001
+  gradient_clip_norm: 5.0
+  mixed_precision: true
+  resume: null
